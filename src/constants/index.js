@@ -1,4 +1,9 @@
 import { createCampaign, dashboard, logout, payment, profile, withdraw } from '../assets';
+// import { useDisconnect } from "@thirdweb-dev/react";
+// const disconnectWallet = () => {
+//   const disconnect = useDisconnect();
+//   disconnect(); // Disconnect the wallet
+// };
 
 export const navlinks = [
   {
@@ -29,9 +34,9 @@ export const navlinks = [
     link: '/profile',
   },
   {
-    name: 'logout',
+    name: 'Disconnect',
     imgUrl: logout,
     link: '/',
-    disabled: true,
+    // disabled: false,
   },
 ];
