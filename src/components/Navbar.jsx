@@ -5,17 +5,22 @@ import { useStateContext } from '../context';
 import { CustomButton } from '.';
 import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks } from '../constants';
+import { useDisconnect } from "@thirdweb-dev/react";
 
-const Navbar = () => {
+const Navbar = ({setSearchQuery, userCampaigns}) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { connect, address } = useStateContext();
+  const disconnect = useDisconnect(); 
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
       <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
-        <input type="text" placeholder="Search for campaigns" className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] text-white bg-transparent outline-none" />
+        <input type="text"
+        onChange={(e)=> setSearchQuery(e.target.value)}
+         placeholder="Search for campaigns"
+         className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] text-white bg-transparent outline-none" />
         
         <div className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer">
           <img src={search} alt="search" className="w-[15px] h-[15px] object-contain"/>
@@ -58,11 +63,18 @@ const Navbar = () => {
               {navlinks.map((link) => (
                 <li
                   key={link.name}
-                  className={`flex p-4 ${isActive === link.name && 'bg-[#3a3a43]'}`}
+                  className={`flex cursor-pointer p-4 
+                    ${isActive === link.name && 'bg-[#3a3a43]'}`}
                   onClick={() => {
-                    setIsActive(link.name);
-                    setToggleDrawer(false);
-                    navigate(link.link);
+                      if(link.name==="Disconnect"){
+                        console.log(disconnect);
+                        disconnect()
+                        setToggleDrawer(false);
+                      }else{
+                        setIsActive(link.name);
+                        setToggleDrawer(false);
+                        navigate(link.link);
+                      }
                   }}
                 >
                   <img 
@@ -85,6 +97,7 @@ const Navbar = () => {
               handleClick={() => {
                 if(address) navigate('create-campaign')
                 else connect();
+                setToggleDrawer(false);
               }}
             />
             </div>

@@ -10,7 +10,7 @@ import { checkIfImage } from '../utils';
 const CreateCampaign = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { createCampaign } = useStateContext();
+  const { createCampaign, address } = useStateContext();
   const [form, setForm] = useState({
     name: '',
     title: '',
@@ -26,18 +26,21 @@ const CreateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     console.log(form);
-    checkIfImage(form.image, async (exists) => {
-      if(exists) {
-        setIsLoading(true)
-        await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
-        setIsLoading(false);
-        navigate('/');
-      } else {
-        alert('Provide valid image URL')
-        setForm({ ...form, image: '' });
-      }
-    })
+    if(!address) return;
+     else{
+
+       checkIfImage(form.image, async (exists) => {
+         if(exists) {
+           setIsLoading(true)
+           await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
+           setIsLoading(false);
+           navigate('/');
+         } else {
+           alert('Provide valid image URL')
+           setForm({ ...form, image: '' });
+         }
+       })
+     }
   }
 
   return (
@@ -101,15 +104,23 @@ const CreateCampaign = () => {
             inputType="url"
             value={form.image}
             handleChange={(e) => handleFormFieldChange('image', e)}
+            className="mb-[40px]"
           />
 
-          <div className="flex justify-center items-center mt-[40px]">
+          <p className=" bg-red-400 px-4 py-2 flex mt-[20px]
+           mb-0  text-center" style={{ display: address ? "none" : "block" }}  >
+            ⚠️ Please connect your wallet to create a campaign.</p>
+
+          <div  style={{ cursor: address ? "pointer" : "not-allowed" }} 
+           className="flex justify-center items-center mt-[20px]">
             <CustomButton 
+           
               btnType="submit"
               title="Submit new campaign"
               styles="bg-[#1dc071]"
             />
           </div>
+          
       </form>
     </div>
   )

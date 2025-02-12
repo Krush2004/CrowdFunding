@@ -16,7 +16,7 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
     )}
   </div>
 )
-console.log(useDisconnect);
+
 
 
 
@@ -49,7 +49,6 @@ const Sidebar = () => {
                   else{
                     setIsActive(link.name);
                     navigate(link.link);
-
                   }
                 }
               }}
