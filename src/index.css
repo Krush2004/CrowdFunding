@@ -13,4 +13,41 @@
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(0.8);
+  color: black;
 }
+
+main.light{
+  background-color: white;
+}
+main.light #fund-card{
+  background-color: #F3F3F6;
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+main.light #sidebar,
+main.light #input,
+main.light #sun-moon,
+main.light #form-container{
+  background: #F3F3F6;
+}
+main.light #toggle-bar{
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+main.light #c-head,
+main.light .num
+{
+  color: rgba(0, 0, 0, 0.875);
+}
+
+main.light .form-input{
+  color: black;
+}
+main.light .form-input::placeholder{
+  color: rgb(172, 166, 166);
+}
+main.light .camp-title {
+  background-color: #4ACD8D;
+}
+

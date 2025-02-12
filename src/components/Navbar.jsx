@@ -7,16 +7,18 @@ import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks } from '../constants';
 import { useDisconnect } from "@thirdweb-dev/react";
 
-const Navbar = ({setSearchQuery, userCampaigns}) => {
+const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
   const navigate = useNavigate();
-  const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { connect, address } = useStateContext();
+  const [isActive, setIsActive] = activeState;
+  const [isLight, setIsLight] = theme
   const disconnect = useDisconnect(); 
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
-      <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
+      <div id='input' className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px]
+       bg-[#1c1c24] rounded-[100px]">
         <input type="text"
         onChange={(e)=> setSearchQuery(e.target.value)}
          placeholder="Search for campaigns"
@@ -33,8 +35,14 @@ const Navbar = ({setSearchQuery, userCampaigns}) => {
           title={address ? 'Create a campaign' : 'Connect'}
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
-            if(address) navigate('create-campaign')
-            else connect()
+            if(address) {
+              navigate('create-campaign')
+              setIsActive('campaign')
+            }
+            else {
+              connect()
+              setIsActive('dashboard')
+            }
           }}
         />
 
@@ -46,8 +54,8 @@ const Navbar = ({setSearchQuery, userCampaigns}) => {
       </div>
 
       {/* Small screen navigation */}
-        <div className="sm:hidden flex justify-between items-center relative">
-        <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
+        <div className="sm:hidden flex justify-between items-center relative ">
+        <div  className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
             <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
           </div>
 
@@ -58,17 +66,18 @@ const Navbar = ({setSearchQuery, userCampaigns}) => {
             onClick={() => setToggleDrawer((prev) => !prev)}
           />
 
-          <div className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${!toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'} transition-all duration-700`}>
+          <div id="toggle-bar" className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${!toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'} transition-all duration-700`}>
             <ul className="mb-4">
               {navlinks.map((link) => (
                 <li
                   key={link.name}
                   className={`flex cursor-pointer p-4 
-                    ${isActive === link.name && 'bg-[#3a3a43]'}`}
+                    ${isActive === link.name && 'bg-[#3a3a43]'}  ${ isActive === link.name ? (isLight ? 'bg-gray-300' : 'bg-[#3a3a43]') : ''}`}
                   onClick={() => {
                       if(link.name==="Disconnect"){
-                        console.log(disconnect);
+                        navigate('/profile')
                         disconnect()
+                        setIsActive('Disconnect');
                         setToggleDrawer(false);
                       }else{
                         setIsActive(link.name);
@@ -95,9 +104,16 @@ const Navbar = ({setSearchQuery, userCampaigns}) => {
               title={address ? 'Create a campaign' : 'Connect'}
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
-                if(address) navigate('create-campaign')
-                else connect();
-                setToggleDrawer(false);
+                if(address) {
+                  navigate('create-campaign')
+                  setIsActive('campaign')
+                  setToggleDrawer(false);
+                }
+                else {
+                  connect()
+                  setToggleDrawer(false);
+                  setIsActive('dashboard')
+                }
               }}
             />
             </div>
