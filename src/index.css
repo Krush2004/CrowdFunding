@@ -41,7 +41,8 @@ main.light .num
   color: rgba(0, 0, 0, 0.875);
 }
 
-main.light .form-input{
+main.light .form-input,
+main.light .search-input{
   color: black;
 }
 main.light .form-input::placeholder{
