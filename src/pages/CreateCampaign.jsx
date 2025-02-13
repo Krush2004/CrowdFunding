@@ -111,7 +111,8 @@ const CreateCampaign = () => {
 
         <FormField 
             labelName="Proof of Work *"
-            inputType="file"
+            inputType="url"
+             placeholder="Place image URL of your proof of work"
             value={form.workproof}
             handleChange={(e) => handleFormFieldChange('workproof', e)}
             className="mb-[40px]"
@@ -130,6 +131,7 @@ const CreateCampaign = () => {
               styles="bg-[#1dc071]"
             />
           </div>
+          <a href="https://drive.google.com/file/d/1EknKH_h063s-eVKcBXRTulxakiQqUAol/view?usp=sharing" target='_blank'>click me</a>
           
       </form>
     </div>
