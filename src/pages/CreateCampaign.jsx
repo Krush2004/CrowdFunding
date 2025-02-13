@@ -17,7 +17,8 @@ const CreateCampaign = () => {
     description: '',
     target: '', 
     deadline: '',
-    image: ''
+    image: '',
+    workproof: ''
   });
 
   const handleFormFieldChange = (fieldName, e) => {
@@ -36,7 +37,7 @@ const CreateCampaign = () => {
            setIsLoading(false);
            navigate('/');
          } else {
-           alert('Provide valid image URL')
+           alert('Provide valid image URL');
            setForm({ ...form, image: '' });
          }
        })
@@ -105,6 +106,14 @@ const CreateCampaign = () => {
             inputType="url"
             value={form.image}
             handleChange={(e) => handleFormFieldChange('image', e)}
+            className="mb-[0px]"
+          />
+
+        <FormField 
+            labelName="Proof of Work *"
+            inputType="file"
+            value={form.workproof}
+            handleChange={(e) => handleFormFieldChange('workproof', e)}
             className="mb-[40px]"
           />
 

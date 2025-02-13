@@ -7,7 +7,7 @@ import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk';
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
-  const { contract } = useContract('0xb699Deb9528aa3555a1B44e22E37d32051886C04');
+  const { contract } = useContract('0xe26602ed4ac00061bC76b8579441146BBfc90F60');
   const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
   const address = useAddress();
@@ -23,6 +23,7 @@ export const StateContextProvider = ({ children }) => {
 					form.target,
 					new Date(form.deadline).getTime(), // deadline,
 					form.image,
+          form.workproof
 				],
 			});
 
@@ -43,6 +44,7 @@ export const StateContextProvider = ({ children }) => {
       deadline: campaign.deadline.toNumber(),
       amountCollected: ethers.utils.formatEther(campaign.amountCollected.toString()),
       image: campaign.image,
+      workProof: campaign.workproof,
       pId: i
     }));
 

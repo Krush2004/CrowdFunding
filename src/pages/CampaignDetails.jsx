@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
-import { CountBox, CustomButton, Loader } from '../components';
+import { CountBox, ProofBox,  CustomButton, Loader } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { thirdweb } from '../assets';
 
@@ -20,7 +20,7 @@ const CampaignDetails = () => {
 
   const fetchDonators = async () => {
     const data = await getDonations(state.pId);
-
+    console.log(state);
     setDonators(data);
   }
 
@@ -54,6 +54,7 @@ const CampaignDetails = () => {
           <CountBox title="Days Left" value={remainingDays} />
           <CountBox title={`Raised of ${state.target}`} value={state.amountCollected} />
           <CountBox title="Total Backers" value={donators.length} />
+          <ProofBox title="Work Proof" value={state.workProof} />
         </div>
       </div>
 
