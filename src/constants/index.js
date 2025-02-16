@@ -9,7 +9,7 @@ export const navlinks = [
   {
     name: 'dashboard',
     imgUrl: dashboard,
-    link: '/home',
+    link: '/dashboard',
   },
   {
     name: 'campaign',
@@ -25,8 +25,8 @@ export const navlinks = [
   {
     name: 'withdraw',
     imgUrl: withdraw,
-    link: '/',
-    disabled: true,
+    link: '/home',
+    // disabled: true,
   },
   {
     name: 'profile',

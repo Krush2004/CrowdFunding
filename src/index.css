@@ -65,3 +65,30 @@ main.light .camp-title {
 main.light #proof{
   color: blue;
 }
+.container{
+  max-width: 80%;
+  /* min-height: 100vh; */
+  margin-inline: auto;
+}
+
+.title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  /* margin-bottom: 0; */
+  padding-bottom: 0;
+}
+
+.content{
+  /* max-height: 0; */
+  overflow: hidden;
+  color: #8b7f75;
+  transition: all 9s cubic-bezier(0,1,0,1);
+}
+.content.show{
+  /* max-height: max-content; */
+  /* overflow: auto; */
+  transition: all 1s cubic-bezier(1,0,1,0) ;
+  display: block;
+}

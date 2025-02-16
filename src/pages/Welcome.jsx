@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { FaFacebook,FaGithub, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import {logo} from '../assets'
+import { Link } from 'react-router';
 
 const Welcome = () => {
   const navigate = useNavigate();
