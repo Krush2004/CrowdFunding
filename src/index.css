@@ -28,15 +28,26 @@ main.light #fund-card{
 main.light #sidebar,
 main.light #input,
 main.light #sun-moon,
-main.light #form-container{
+main.light #form-container,
+main.light #count-box p{
   background: #F3F3F6;
+}
+main.light #count-box h4,
+main.light .bisque{
+  background-color: bisque;
+}
+main.light .pink{
+  background-color: rgb(244, 148, 247);
 }
 main.light #toggle-bar{
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 main.light #c-head,
-main.light .num
+main.light .num, 
+main.light #count-box p, 
+main.light #count-box h4,
+main.light .upperCase
 {
   color: rgba(0, 0, 0, 0.875);
 }
@@ -51,4 +62,6 @@ main.light .form-input::placeholder{
 main.light .camp-title {
   background-color: #4ACD8D;
 }
-
+main.light #proof{
+  color: blue;
+}

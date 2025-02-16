@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.0.5",
     "@thirdweb-dev/react": "^4.9.4",
     "@thirdweb-dev/sdk": "^4.0.99",
+    "axios": "^1.7.9",
     "ethers": "^5.7.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

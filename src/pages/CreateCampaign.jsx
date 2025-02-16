@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import { ethers } from 'ethers';
+import axios from 'axios'
 
 import { useStateContext } from '../context';
 import { money } from '../assets';
-import { CustomButton, FormField, Loader } from '../components';
+import { CustomButton, FormField, Loader, Uploader } from '../components';
 import { checkIfImage } from '../utils';
 
 const CreateCampaign = () => {
@@ -18,8 +19,12 @@ const CreateCampaign = () => {
     target: '', 
     deadline: '',
     image: '',
-    workproof: ''
+    workProof: ''
   });
+  
+  const [file, setFile]= useState("");
+  const [fileUrl, SetFileUrl] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: e.target.value })
@@ -44,9 +49,39 @@ const CreateCampaign = () => {
      }
   }
 
+  const docSubmit = async (e) => {
+    e.preventDefault()
+    try{
+     const fileData = new FormData();
+     fileData.append("file",file)
+    setIsUploading(true)
+     const responseData = await axios({
+       method: "post",
+       url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
+       data: fileData,
+       headers: {
+       pinata_api_key: "18d90f8a5912026d3d56",
+       pinata_secret_api_key: "a5d5eee8014d4c7a88efb34edcbd9f947bbfc8a9760463cc38cece12ca89b5e6 ",
+       "Content-Type": "multipart/form-data",
+       }
+       });
+       setIsUploading(false)
+       const fileUrl="https://gateway.pinata.cloud/ipfs/" + responseData.data.IpfsHash;
+       console.log('Uploaded file URL: ', fileUrl);
+       SetFileUrl(fileUrl)
+       setForm((prevForm) => ({
+         ...prevForm,
+         workProof: fileUrl, // Correctly set the file URL in state
+      }));
+ 
+    }catch(err){
+    console.log(err)
+    }
+   }
+
   return (
     <div id='form-container' className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
-      {isLoading && <Loader />}
+      {isLoading && <Loader />} {isUploading && <Uploader />}
       <div className="camp-title flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
         <h1 className="camp-title font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">Start a Campaign</h1>
       </div>
@@ -109,14 +144,20 @@ const CreateCampaign = () => {
             className="mb-[0px]"
           />
 
+        
         <FormField 
             labelName="Proof of Work *"
-            inputType="url"
-             placeholder="Place image URL of your proof of work"
-            value={form.workproof}
-            handleChange={(e) => handleFormFieldChange('workproof', e)}
-            className="mb-[40px]"
+            inputType="file"
+            placeholder="Place image URL of your proof of work"
+            handleChange={(e)=> {
+              setFile(e.target.files[0])
+            }}
+            className="mb-[0px]"
           />
+         <button onClick={docSubmit}
+         className='bg-yellow-300 max-w-[100px] py-[10px] rounded-[10px] align-middle ' >IPFS Upload</button>
+         
+        
 
           <p className=" bg-red-400 px-4 py-2 flex mt-[20px]
            mb-0  text-center" style={{ display: address ? "none" : "block" }}  >
@@ -131,7 +172,6 @@ const CreateCampaign = () => {
               styles="bg-[#1dc071]"
             />
           </div>
-          <a href="https://drive.google.com/file/d/1EknKH_h063s-eVKcBXRTulxakiQqUAol/view?usp=sharing" target='_blank'>click me</a>
           
       </form>
     </div>

@@ -14,6 +14,7 @@ export const StateContextProvider = ({ children }) => {
   const connect = useMetamask();
 
   const publishCampaign = async (form) => {
+    console.log('form being submitted: ', form);
     try {
       const data = await createCampaign({
 				args: [
@@ -23,7 +24,7 @@ export const StateContextProvider = ({ children }) => {
 					form.target,
 					new Date(form.deadline).getTime(), // deadline,
 					form.image,
-          form.workproof
+          form.workProof,
 				],
 			});
 
@@ -44,7 +45,7 @@ export const StateContextProvider = ({ children }) => {
       deadline: campaign.deadline.toNumber(),
       amountCollected: ethers.utils.formatEther(campaign.amountCollected.toString()),
       image: campaign.image,
-      workProof: campaign.workproof,
+      workProof: campaign.workProof,
       pId: i
     }));
 

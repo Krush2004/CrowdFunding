@@ -111,8 +111,9 @@ const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
                 }
                 else {
                   connect()
+                  {console.log('connected')}
                   setToggleDrawer(false);
-                  setIsActive('dashboard')
+                  // setIsActive('dashboard')
                 }
               }}
             />
