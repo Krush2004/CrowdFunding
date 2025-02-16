@@ -40,7 +40,7 @@ const CreateCampaign = () => {
            setIsLoading(true)
            await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
            setIsLoading(false);
-           navigate('/');
+           navigate('/home');
          } else {
            alert('Provide valid image URL');
            setForm({ ...form, image: '' });
@@ -166,7 +166,6 @@ const CreateCampaign = () => {
           <div  style={{ cursor: address ? "pointer" : "not-allowed" }} 
            className="flex justify-center items-center mt-[20px]">
             <CustomButton 
-           
               btnType="submit"
               title="Submit new campaign"
               styles="bg-[#1dc071]"

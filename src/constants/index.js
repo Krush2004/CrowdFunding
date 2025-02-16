@@ -9,19 +9,19 @@ export const navlinks = [
   {
     name: 'dashboard',
     imgUrl: dashboard,
-    link: '/',
+    link: '/home',
   },
   {
     name: 'campaign',
     imgUrl: createCampaign,
     link: '/create-campaign',
   },
-  {
-    name: 'payment',
-    imgUrl: payment,
-    link: '/',
-    disabled: true,
-  },
+  // {
+  //   name: 'payment',
+  //   imgUrl: payment,
+  //   link: '/',
+  //   disabled: true,
+  // },
   {
     name: 'withdraw',
     imgUrl: withdraw,
