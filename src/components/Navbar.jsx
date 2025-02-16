@@ -36,7 +36,7 @@ const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
             if(address) {
-              navigate('create-campaign')
+              navigate('/create-campaign')
               setIsActive('campaign')
             }
             else {
