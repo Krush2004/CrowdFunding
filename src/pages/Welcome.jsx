@@ -33,7 +33,7 @@ const Welcome = () => {
           </div>
           <div className="text-center">
             <img src="https://img.freepik.com/free-vector/cute-man-working-laptop-cartoon-vector-icon-illustration-people-technology-icon-concept-isolated_138676-9123.jpg" alt="Founder" className="w-20 h-20 rounded-full mx-auto mb-2" />
-            <p className="text-white font-semibold">Anirudhha Kolay</p>
+            <p className="text-white font-semibold">Anirudha Kolay</p>
             <p className="text-gray-400 text-sm">Blockchain Operator & Documentation Lead</p>
           </div>
           <div className="text-center">
@@ -44,7 +44,7 @@ const Welcome = () => {
           <div className="text-center mr-6">
             <img src="https://img.freepik.com/free-vector/cute-girl-hacker-operating-laptop-cartoon-vector-icon-illustration-people-technology-isolated-flat_138676-9487.jpg" alt="UI Designer" className="w-20 h-20 rounded-full mx-auto mb-2" />
             <p className="text-white font-semibold">Amandeep Guggi</p>
-            <p className="text-gray-400 text-sm">Frontend & UI/UX Developer</p>
+            <p className="text-gray-400 text-sm">Frontend and UI/UX Developer</p>
           </div>
         </div>
       </div>
