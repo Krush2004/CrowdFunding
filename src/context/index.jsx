@@ -14,7 +14,6 @@ export const StateContextProvider = ({ children }) => {
   const connect = useMetamask();
 
   const publishCampaign = async (form) => {
-    console.log('form being submitted: ', form);
     try {
       const data = await createCampaign({
 				args: [

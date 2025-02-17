@@ -8,3 +8,4 @@ export { default as CountBox } from './CountBox';
 export { default as ProofBox } from './ProofBox';
 export { default as Loader } from './Loader';
 export { default as Uploader } from './Uploader';
+export { default as Video } from './Video';

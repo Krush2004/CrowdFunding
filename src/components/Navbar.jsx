@@ -13,7 +13,7 @@ const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
   const { connect, address } = useStateContext();
   const [isActive, setIsActive] = activeState;
   const [isLight, setIsLight] = theme
-  const disconnect = useDisconnect(); 
+  const disconnect = useDisconnect();
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -22,17 +22,54 @@ const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
         <input type="text" id='search-input'
         onChange={(e)=> setSearchQuery(e.target.value)}
          placeholder="Search for campaigns"
-         className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isLight? 'text-black' : 'text-white'} bg-transparent outline-none`} />
+         className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${isLight? 'text-black' : 'text-white'}
+          bg-transparent outline-none`} />
         
         <div className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer">
           <img src={search} alt="search" className="w-[15px] h-[15px] object-contain"/>
         </div>
       </div>
+      <div className='flex text-[#4b5264] items-center justify-center gap-4'>
+        <Link to="/dashboard#how-it-works"
+        onClick={()=> {
+          navigate("/dashboard#how-it-works");
+          setTimeout(() => {
+            document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+          setIsActive('dashboard')
+        }}
+        >How it works</Link>
+        <Link to="/home"
+        onClick={()=> {
+          // navigate('/home')
+          setIsActive('withdraw')
+        }}
+        >Explore Campaigns</Link>
+
+        <Link to="/dashboard#contact"
+        onClick={()=> {
+          navigate("/dashboard#contact");
+          setTimeout(() => {
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+          setIsActive('dashboard')
+        }}>contact us?</Link>
+        <Link to="/dashboard#faq"
+        onClick={()=> {
+          navigate("/dashboard#faq");
+          setTimeout(() => {
+            document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+          setIsActive('dashboard')
+        }}
+        >Support & FAQ</Link>
+        </div>
+        
 
       <div className="sm:flex hidden flex-row justify-end gap-4">
         <CustomButton 
           btnType="button"
-          title={address ? 'Create a campaign' : 'Connect'}
+          title={address ? 'Start a Campaign' : 'Connect'}
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
             if(address) {

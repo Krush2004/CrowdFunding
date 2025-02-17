@@ -30,36 +30,41 @@ const Sidebar = ({theme, activeState}) => {
 
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
-      <Link to="/">
+      <Link to="/"  >
         <Icon styles={`w-[52px] h-[52px]  ${isLight? 'bg-[#F3F3F6]' : 'bg-[#2c2f32]'}`} imgUrl={logo} />
       </Link>
 
       <div id='sidebar' className="flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[76px] py-4 mt-12">
         <div className="flex flex-col justify-center items-center gap-3">
           {navlinks.map((link) => (
-            <Icon 
-              key={link.name}
-              {...link}
-              isActive={isActive}
-              isLight={isLight}
-              lightColor="text-black"
-              darkColor="grayscale"
-              lightBg="bg-orange"
-              darkBg="bg-[#2c2f32]"
-              handleClick={() => {
-                if(!link.disabled) {
-                  if(link.name==="Disconnect"){
-                    setIsActive(link.name);
-                    disconnect()
-                    navigate('/profile');
-                  }
-                  else{
-                    setIsActive(link.name);
-                    navigate(link.link);
-                  }
+           <div className='flex flex-col items-center justify-center gap-2'>
+             <Icon 
+            key={link.name}
+            {...link}
+            isActive={isActive}
+            isLight={isLight}
+            lightColor="text-black"
+            darkColor="grayscale"
+            lightBg="bg-orange"
+            darkBg="bg-[#2c2f32]"
+            styles={`mb-[15px] group hover:cursor-pointer`}
+            handleClick={() => {
+              if(!link.disabled) {
+                if(link.name==="Disconnect"){
+                  setIsActive(link.name);
+                  disconnect()
+                  navigate('/profile');
                 }
-              }}
+                else{
+                  setIsActive(link.name);
+                  navigate(link.link);
+                }
+              }
+            }}
             />
+            <p className='absolute  mb-5 ml-40 text-[#4acd8d] hidden group-hover:block' > {link.name}</p>
+           </div>
+            
           ))}
         </div>
 
