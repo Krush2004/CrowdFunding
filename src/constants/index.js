@@ -23,7 +23,7 @@ export const navlinks = [
   //   disabled: true,
   // },
   {
-    name: 'withdraw',
+    name: 'home',
     imgUrl: withdraw,
     link: '/home',
     // disabled: true,

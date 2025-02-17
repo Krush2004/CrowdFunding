@@ -3,9 +3,20 @@ import { Link, useNavigate } from 'react-router';
 
 import { useStateContext } from '../context';
 import { CustomButton } from '.';
-import { logo, menu, search, thirdweb } from '../assets';
+import { logo, menu, search, thirdweb, moon, sun } from '../assets';
 import { navlinks } from '../constants';
 import { useDisconnect } from "@thirdweb-dev/react";
+
+const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick, lightColor, darkColor, isLight, darkBg, lightBg}) => (
+  <div className={`w-[48px] h-[48px] rounded-[10px] ${isActive && isActive === name ? (isLight ? lightBg : darkBg) : ''}
+  flex justify-center items-center ${!disabled && 'cursor-pointer'} ${styles}`} onClick={handleClick}>
+    {!isActive ? (
+      <img src={imgUrl} alt="fund_logo" className="w-1/2 h-1/2" />
+    ) : (
+      <img src={imgUrl} alt="fund_logo" className={`w-1/2 h-1/2 ${isActive !== name && 'grayscale'}`} />
+    )}
+  </div>
+)
 
 const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
   const navigate = useNavigate();
@@ -42,7 +53,7 @@ const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
         <Link to="/home"
         onClick={()=> {
           // navigate('/home')
-          setIsActive('withdraw')
+          setIsActive('home')
         }}
         >Explore Campaigns</Link>
 
@@ -134,6 +145,19 @@ const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
               ))}
             </ul>
 
+            <div className='ml-2 mb-10 flex items-center' >
+                     <Icon handleClick={()=> {
+                      setToggleDrawer((prev)=> !prev)
+                        setIsLight(!isLight)
+                        localStorage.setItem('isLightMode', !isLight)
+                      }} id="sun-moon" styles={` ${isLight? '': 'bg-[#1c1c24]'} shadow-secondary`} imgUrl={isLight? moon : sun} />
+                      <p onClick={()=> {
+                      setToggleDrawer((prev)=> !prev)
+                        setIsLight(!isLight)
+                        localStorage.setItem('isLightMode', !isLight)
+                      }}  className='text-[#808191] cursor-pointer ml-1 font-bold' >{isLight? 'Darkmode' : 'LightMode'}</p>
+            </div>
+
             <div className="flex mx-4">
             <CustomButton 
               btnType="button"
@@ -154,6 +178,7 @@ const Navbar = ({setSearchQuery, userCampaigns, theme, activeState}) => {
               }}
             />
             </div>
+
           </div>
         </div>
     </div>
