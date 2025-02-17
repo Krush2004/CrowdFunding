@@ -187,7 +187,7 @@ const Dashboard = ({theme}) => {
           </div>
           <div className="text-center">
             <img src="https://img.freepik.com/free-vector/cute-man-working-laptop-cartoon-vector-icon-illustration-people-technology-icon-concept-isolated_138676-9123.jpg" alt="Founder" className="w-20 h-20 rounded-full mx-auto mb-2" />
-            <p className="text-white font-semibold">Anirudhha Kolay</p>
+            <p className="text-white font-semibold">Anirudha Kolay</p>
             <p className="text-gray-400 text-sm">Blockchain Operator & Documentation Lead</p>
           </div>
           <div className="text-center">
