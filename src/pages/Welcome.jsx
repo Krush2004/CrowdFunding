@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { FaFacebook,FaGithub, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import {logo} from '../assets'
+import { Link } from 'react-router';
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ const Welcome = () => {
           <div className="text-center mr-6">
             <img src="https://img.freepik.com/free-vector/cute-girl-hacker-operating-laptop-cartoon-vector-icon-illustration-people-technology-isolated-flat_138676-9487.jpg" alt="UI Designer" className="w-20 h-20 rounded-full mx-auto mb-2" />
             <p className="text-white font-semibold">Amandeep Guggi</p>
-            <p className="text-gray-400 text-sm">Frontend & UI/UX Developer</p>
+            <p className="text-gray-400 text-sm">Frontend and UI/UX Developer</p>
           </div>
         </div>
       </div>

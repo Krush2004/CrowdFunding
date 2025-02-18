@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
-import {useState} from 'react'
+import {useState} from 'react';
 
 import { Sidebar, Navbar } from './components';
-import { CampaignDetails, CreateCampaign, Home, Profile, Welcome } from './pages';
+import { CampaignDetails, CreateCampaign, Home, Profile, Welcome, Dashboard } from './pages';
 
-const MainApp = () => {
+const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [userCampaigns, setUserCampaigns] = useState([]);
   const [isLight, setIsLight] = useState(JSON.parse(localStorage.getItem('isLightMode')));
@@ -22,7 +22,9 @@ const MainApp = () => {
         <Navbar theme={[isLight, setIsLight]} userCampaigns={userCampaigns}  setSearchQuery={setSearchQuery} activeState={[isActive, setIsActive]} />
 
         <Routes>
+          <Route path='/' element={<Dashboard theme={[isLight, setIsLight]} activeState={[isActive, setIsActive]} />} />
           <Route path="/home" element={<Home setUserCampaigns={setUserCampaigns} searchQuery={searchQuery} />} />
+          <Route path="/dashboard" element={<Dashboard theme={[isLight, setIsLight]} activeState={[isActive, setIsActive]} />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-campaign" element={<CreateCampaign />} />
           <Route path="/campaign-details/:id" element={<CampaignDetails />} />
@@ -32,16 +34,6 @@ const MainApp = () => {
   )
 }
 
-const App = () => {
-  return (
-    <>
-    <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="/*" element={<MainApp />} />
-    </Routes>
-  
-    </>
-  );
-};
+
 
 export default App
